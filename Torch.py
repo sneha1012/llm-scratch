@@ -115,5 +115,17 @@ import torch.nn.functional as F
 torch.manual_seed(123) #code reproducible and debugging is easier for any randomly generated stuff in the program. 
 model = NeuralNetwork(num_inpouts = 2, num_outputs = 2)
 optimizer = torch.optim.SGD(
-    model.parameters() #SGD tweaks the model parameter towards the negative grdaient thus minimisng th loss , model parameter retrives all part of program that neeeds to be updated during traning weights and biases.
+    model.parameters(),  lr=0.5 #SGD tweaks the model parameter towards the negative grdaient thus minimisng th loss , model parameter retrives all part of program that neeeds to be updated during traning weights and biases.
 )
+
+num_epochs = 3
+for epoch in range(num_epochs): 
+
+    model.train()
+    for batch_idx, (features, labels) in enumerate(train_loader):
+        logits = model(features)
+
+        loss = F.cross_entropy(logits, labels)
+        optimizer.zero_grad()
+        loss.backwards() #compute gradient of loss given the parameters. 
+        optimizer.step()   #optimiser uses gradient to update the loss 
