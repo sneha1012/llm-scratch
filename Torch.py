@@ -70,6 +70,34 @@ X = torch.rand((1, 50))
 out = model(X)
 print(out)
 
+#Cerating a Toy dataset 
+from torch.utils.data import Dataset
+
+class ToyDataset(Dataset):
+    def __init__(self, X, y):
+        self.features = X
+        self.labels = y
+
+    def __getitem__(self, index):        
+        one_x = self.features[index]     
+        one_y = self.labels[index]       
+        return one_x, one_y             
+
+    def __len__(self):
+        return self.labels.shape[0]      
+
+train_ds = ToyDataset(X_train, y_train)
+test_ds = ToyDataset(X_test, y_test)
+
+from torch.utils.data import DataLoader
+torch.manual_seed(123)
+
+train_loader = DataLoader(
+    dataset=train_ds,     
+    batch_size=2,
+    shuffle=True,          
+    num_workers=0     
+)
 
 
 ##DataLoaders Class, rtakes care of how data is huffled and batched
@@ -77,6 +105,7 @@ train_loader = DataLoader(
     dataset=train_ds,
     batch_size=2,
     shuffle=True,
-    num_workers=0,
+    num_workers=0,  #data loadeing will be done i main process and not in seperate work proesses, paralle with reprocessing.
     drop_last=True
 )
+
