@@ -76,9 +76,9 @@ from torch.utils.data import Dataset
 class ToyDataset(Dataset):
     def __init__(self, X, y):
         self.features = X
-        self.labels = y
+        self.labels = y 
 
-    def __getitem__(self, index):        
+    def __getitem__(self, index):    #particular index from the data (features inputs)     
         one_x = self.features[index]     
         one_y = self.labels[index]       
         return one_x, one_y             
@@ -100,7 +100,7 @@ train_loader = DataLoader(
 )
 
 
-##DataLoaders Class, rtakes care of how data is huffled and batched
+##DataLoaders Class, rtakes care of how data is shuffled and batched
 train_loader = DataLoader(
     dataset=train_ds,
     batch_size=2,
@@ -109,3 +109,11 @@ train_loader = DataLoader(
     drop_last=True
 )
 
+
+##Neural Network training in Pytorch using the toy dataset we created earlier
+import torch.nn.functional as F
+torch.manual_seed(123) #code reproducible and debugging is easier for any randomly generated stuff in the program. 
+model = NeuralNetwork(num_inpouts = 2, num_outputs = 2)
+optimizer = torch.optim.SGD(
+    model.parameters() #SGD tweaks the model parameter towards the negative grdaient thus minimisng th loss , model parameter retrives all part of program that neeeds to be updated during traning weights and biases.
+)
