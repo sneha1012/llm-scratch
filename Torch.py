@@ -60,5 +60,23 @@ class NeuralNetwork(torch.nn.Module):
     def forward(self, x):
         logits = self.layers(x) #outputs of the last layers called logits
         return logits    
+model = NeuralNetwork(50, 3)
 
-    num_params = sum(p.numel() for p in model.parameters() if p.requires_grad)       
+
+num_params = sum(p.numel() for p in model.parameters() if p.requires_grad)       
+
+torch.manual_seed(123)   
+X = torch.rand((1, 50))
+out = model(X)
+print(out)
+
+
+
+##DataLoaders Class, rtakes care of how data is huffled and batched
+train_loader = DataLoader(
+    dataset=train_ds,
+    batch_size=2,
+    shuffle=True,
+    num_workers=0,
+    drop_last=True
+)
