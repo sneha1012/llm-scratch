@@ -35,3 +35,30 @@ loss = F.binary_cross_entropy(a, y ) #cross
 loss.backward()
 print(w1.grad)
 print(b.grad)
+
+
+#Multilayer perceptron in PyTroch
+
+class NeuralNetwork(torch.nn.Module):
+    def __init__(self, num_inputs, num_outputs):    
+        super().__init__()
+
+        self.layers = torch.nn.Sequential(
+
+            # 1st hidden layer
+            torch.nn.Linear(num_inputs, 30),    #the linear layer takes on input features and returns nodes a arguments
+            torch.nn.ReLU(),               
+
+            # 2nd hidden layer
+            torch.nn.Linear(30, 20),    
+            torch.nn.ReLU(), #non linear activation fucntions are placed between hidden layers
+
+            # output layer
+            torch.nn.Linear(20, num_outputs),
+        )
+
+    def forward(self, x):
+        logits = self.layers(x) #outputs of the last layers called logits
+        return logits    
+
+    num_params = sum(p.numel() for p in model.parameters() if p.requires_grad)       
