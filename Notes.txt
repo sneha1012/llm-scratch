@@ -35,5 +35,8 @@ Stage 3: FineTuned LLM (Classifier or Personal Assistant which is instructional)
 1. Either Instructional Dataset 
 2. Or Dataset with Class Labels
 
-
+A few Steps to get the steps started for prepping the text/ data:
+1. Splitting into words/tokens
+2. byte pair encoding as a more advanced Tokenization process.
+We can then move on to sampling training example with sliding window approach, and finally converting tokens into vectors that can be fed into Large L Models/
 
