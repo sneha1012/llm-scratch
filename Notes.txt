@@ -1,0 +1,39 @@
+LLM is a neural network designed to understand, generate and respond like humans do. deep neural networks models trained on several large text data.
+large in large language models refers to both the model parameters size and and also the large datset it is trained on. Parameter \s are wieghts adjusted during training and optimised to predict the next wor in the sequence.
+
+LLMs utilise architecture called Transformers inherently. Which also allows to pay specific attention to the ifferetn parts of the input making it better for human like generation and understanding.
+In deep learning, we do not need to choose the best suited features manualy like in machine learning but we do still need labels like - spam or nospam.
+LLms are best for mostly automating tasks, be it nay type of unstructured data involving parsing and generating text. LLM from scratch for better fine-tuning or pretuning our other large language models for our domain specifc tasks or datasets.
+1. (Trainigng Stage)pretraining suing unlabeled dataset for tasks like text completion d few shot capabilites 2. pretrained LLM can be fine tuned using a smaller labeled dataset.
+
+Categories for Fine-tuning of LLMs:
+1. Instructional fine-tuning - Instructions  + query groups like (prompt for translating - answer after translation)
+2. assification fine-tuning - associated labels
+
+
+##Transfomer architecture (Submodules)
+1. Encoder - Encodes the input texts into vectore(numerical representation) embeddings which capture the real sense 
+2. Decoder - Takes the encoded embeddings to generate the actual output required 
+Encoders and Decoders consists of many self-attention mechanism layers. which allows the LLM to weigh the importance of different words r token sequence in relative positions ot each other.
+
+Some LLMs are still based on COnvulational and recurrent architecture. 
+Tokens = number of units of text wwhere the number of tokens often represent the numbers of words and punctuations in the text. Tokenization is the process of converting the text into tokens (words and punctuations)
+The dataset usually refers to including syntax, semantics and context and general knowledge. The next word prediction task is like a self-supervised learning, form of self-labelling. "Autoagressive" models use their previous outputs for next inputs.
+
+##What does building an LLM from scratch looks like; It has three stages:
+Stage 1: Building block
+1. Data Preparation and sampling 
+2. Attenstion mechanism
+3. LLM Architecture (Encoder / Decoder/ both) 
+
+Stage 2: Foundational Model (unlabelled data)
+1. Training Loop
+2. Model Evaluation
+3. load pretrained weights 
+
+Stage 3: FineTuned LLM (Classifier or Personal Assistant which is instructional)
+1. Either Instructional Dataset 
+2. Or Dataset with Class Labels
+
+
+
