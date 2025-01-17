@@ -22,7 +22,7 @@ The dataset usually refers to including syntax, semantics and context and genera
 
 ##What does building an LLM from scratch looks like; It has three stages:
 Stage 1: Building block
-1. Data Preparation and sampling 
+1. Data Preparation and sampling - tokenization, token id creation 
 2. Attenstion mechanism
 3. LLM Architecture (Encoder / Decoder/ both) 
 
@@ -39,4 +39,21 @@ A few Steps to get the steps started for prepping the text/ data:
 1. Splitting into words/tokens
 2. byte pair encoding as a more advanced Tokenization process.
 We can then move on to sampling training example with sliding window approach, and finally converting tokens into vectors that can be fed into Large L Models/
+
+Since the text is categorical, we need to basically change/convert them into continous times vectors, the process is called embeddings. We often use Word2Vec,
+where we cluster the similar types os vector embeddings considering they all have similar meaning whenever projected in 2 dimensional space, this is usually done for machine learning models though. LLms usually prodcue their own embeddings and 
+update them while training each layer. we can use python's "re.split" to split text on whitespaces. 
+
+eg:
+import re
+example text = "hello my name is Sneha Maurya"
+result = re.split(r'(\s)', text)  #only on whitspaces  ## Captilisation of text helps LLM's understand the concept of proper and common nouns. 
+or result = re.split(r'([,.]|\s)'), text #on periods and whitespaces now. 
+
+Now if we want to completly remove whitespaces as tokens too, we can use 'strip'
+result = [item in item in result if item.strip()], Though we intentionaly keep the whitespaces for generation like code in python which is indentation sensitive.
+
+
+
+
 

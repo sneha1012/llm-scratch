@@ -129,3 +129,10 @@ for epoch in range(num_epochs):
         optimizer.zero_grad()
         loss.backwards() #compute gradient of loss given the parameters. 
         optimizer.step()   #optimiser uses gradient to update the loss 
+
+
+
+
+
+
+
