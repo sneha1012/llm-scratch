@@ -37,13 +37,27 @@ class SimpleTokenizerV1:
         ids = [self.str_to_int[s] for s in result]
         return ids
     
-    def decode(self, ids):         
+    '''   def decode(self, ids):         
         text = " ".join([self.int_to_str[i] for i in ids]) 
 
-        text = re.sub(r'\s+([,.?!"()\\'])', r'\\1', text)   
-        return text
+        #text = re.sub(r'\s+([,.?!"()\\'])', r'\\1', text)   
+        return text 
+        '''
+
+#We can enhace our vocbulary by adding <|unk|> token or <|endoftext|> (which acts as all the concatenated independent etxt sources) which clealry defines that these are not the part of the original text
+
+
+text1 = "sneha"
+text2 = "Maurya"
+res = "<|endoftext|>".join((text1, text2))
+print(res)
 
 
 
-
+'''
+3. Byte Pair Encoding - "tiktoken" lib in python helps to convert into smaller tasks: 
+from importlib.metadata import version
+import tiktoken
+BPE is actually a compresion algorithm used in NLP to create subwords tokenisation. treating each charcter as a seperate token. 2)then look at pairs that actually match together and appear together (count pair frequencies) 3) Merge the most frequent pair that appear together. specially used for handling rare words.
+'''
 
