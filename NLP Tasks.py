@@ -59,5 +59,30 @@ print(res)
 from importlib.metadata import version
 import tiktoken
 BPE is actually a compresion algorithm used in NLP to create subwords tokenisation. treating each charcter as a seperate token. 2)then look at pairs that actually match together and appear together (count pair frequencies) 3) Merge the most frequent pair that appear together. specially used for handling rare words.
+
 '''
 
+'''
+4. Data Sampling with sliding windows - LLM is to generate the input–target pairs required for training an LLM
+'''
+context_size = 4         #1
+x = enc_sample[:context_size]
+y = enc_sample[1:context_size+1]
+print(f"x: {x}")
+print(f"y:      {y}")
+
+for i in range(1, context_size+1):
+    context = enc_sample[:i]
+    desired = enc_sample[i]
+    print(context, "---->", desired)
+
+
+for i in range(1, context_size+1):     #input target pair creation
+    context = enc_sample[:i]
+    desired = enc_sample[i]
+    print(tokenizer.decode(context), "---->", tokenizer.decode([desired]))
+
+
+    '''
+    5. creating token embeddings - initialising weights with random values at first + encode positional information
+    '''
