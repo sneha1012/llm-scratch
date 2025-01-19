@@ -65,7 +65,7 @@ BPE is actually a compresion algorithm used in NLP to create subwords tokenisati
 '''
 4. Data Sampling with sliding windows - LLM is to generate the input–target pairs required for training an LLM
 '''
-context_size = 4         #1
+'''context_size = 4         #1
 x = enc_sample[:context_size]
 y = enc_sample[1:context_size+1]
 print(f"x: {x}")
@@ -81,8 +81,29 @@ for i in range(1, context_size+1):     #input target pair creation
     context = enc_sample[:i]
     desired = enc_sample[i]
     print(tokenizer.decode(context), "---->", tokenizer.decode([desired]))
-
+'''
 
     '''
     5. creating token embeddings - initialising weights with random values at first + encode positional information
     '''
+
+    '''
+    6. Attention Mechanisms - Mechanism in neural newtwork enabling the model to focus on specfic parts of the input sequence while making prediction, improving performance in tasks like machine translations tec.
+    i) Simplified self-attention, ii) Self-attention, iii)Casual Attention, iv)multihead attention. word to word translation of any word in different language, won't form the same sentence grammatically correct. RNN's work really well for such kinds of jobs,
+    RNN works fine with translating short sentences, but not with longer text as they do not have the direct access to previous words  in the input. 
+    Basically Self - attention works like, This word is important for understanding that other word!” It focuses on how words in the same story relate to each other.
+    We have attention weights(attention weight vector) z(i), x(i) - COntext aware is the summary for itself, evaluating the importance for itself. 
+    '''
+
+import torch 
+inputs = torch.tensor(
+    [[0.24, 0.56, 0.65]
+     [0.45, 0.96, 0.67]
+     [0.67, 0.67, 0.78]]  # we will take dot products with each form one another. to get the context vector, which serves as the attention weights
+)
+
+query = inputs[1]
+attn_scores_2 = torch.empty(inputs.shape[0])
+for i, x_i in enumerate(inputs):
+    attn_scores_2[i] = torch.dot(x_i, query)
+print(attn_scores_2)    
