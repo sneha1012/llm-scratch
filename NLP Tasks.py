@@ -102,8 +102,22 @@ inputs = torch.tensor(
      [0.67, 0.67, 0.78]]  # we will take dot products with each form one another. to get the context vector, which serves as the attention weights
 )
 
+# we are trying to calculate the dot product of each input and query.
 query = inputs[1]
 attn_scores_2 = torch.empty(inputs.shape[0])
 for i, x_i in enumerate(inputs):
     attn_scores_2[i] = torch.dot(x_i, query)
 print(attn_scores_2)    
+
+
+#normalisation step. 
+
+attn_weights_2_tmp = attn_scores_2 / attn_scores_2.sum() #technically converting these scores into probabilities
+print("Attention weights:", attn_weights_2_tmp)
+print("Sum:", attn_weights_2_tmp.sum())  #too check if all the wights sume add to one then! It is though advised to use the softmax fucntion, favoirs more extreme values and more favorable gradient propeties during training.
+
+'''
+attentions_weights_2 = torch.softmax(attn_score_2, dim = 0)  
+3. context vector = attention wights * input orginal embedding
+'''
+
